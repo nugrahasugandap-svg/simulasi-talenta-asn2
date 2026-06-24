@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulasi Pemetaan Talenta ASN</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;background:#f5f6f8;margin:20px;}
+.container{max-width:1400px;margin:auto;}
+.section{background:#fff;border:1px solid #ddd;border-radius:12px;padding:20px;margin-bottom:20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;}
+label{display:block;font-size:12px;font-weight:600;margin-bottom:5px;}
+input,select{width:100%;padding:10px;box-sizing:border-box;border:1px solid #ccc;border-radius:8px;}
+.result{line-height:2;margin-top:15px;}
+button{padding:12px 20px;border:none;border-radius:8px;cursor:pointer;margin-right:10px;}
+.btn-primary{background:#007bff;color:#fff;}
+.btn-secondary{background:#6c757d;color:#fff;}
+.btn-primary:hover{background:#0056b3;}
+.btn-secondary:hover{background:#5a6268;}
+.tombol-wrapper{margin:15px 0;}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Simulasi Pemetaan Talenta (1 Orang)</h1>
+
+<!-- IDENTITAS -->
+<div class="section">
+<h3>Data Pegawai</h3>
+<div class="grid">
+<div><label>NIP</label><input id="nip" value="2019031004"></div>
+<div><label>NAMA</label><input id="nama" value="DUDE"></div>
+<div><label>TMP_LAHIR</label><input id="tmp_lahir" value="MANGGARAI"></div>
+<div><label>TGL_LAHIR</label><input type="date" id="tgl_lahir" value="1991-07-23"></div>
+<div><label>SEX</label><select id="sex"><option>L</option><option>P</option></select></div>
+</div>
+</div>
+
+<!-- KEPEGAWAIAN -->
+<div class="section">
+<h3>Data Kepegawaian</h3>
+<div class="grid">
+<div><label>PEND AKHIR</label>
+<select id="pend_akhir">
+<option value="SLTA">SLTA</option><option value="D3">D3</option>
+<option value="S1" selected>S1</option><option value="S2">S2</option><option value="S3">S3</option>
+</select>
+</div>
+<div><label>BIDANG ILMU</label>
+<select id="bidang_ilmu">
+<option value="Sesuai" selected>Sesuai</option>
+<option value="Tidak Sesuai">Tidak Sesuai</option>
+</select>
+</div>
+<div><label>GOL AKHIR</label>
+<select id="gol_akhir">
+<option>II/c</option><option>II/d</option><option>III/a</option>
+<option>III/c</option><option>III/d</option><option>IV/a</option>
+<option>IV/b</option><option>IV/c</option>
+</select>
+</div>
+<div><label>TMT GOLAKR</label><input type="date" id="tmt_gol" value="2019-03-01"></div>
+<div><label>ESELON KINI</label>
+<select id="eselon">
+<option></option><option>Eselon II</option><option>Eselon III</option>
+<option>Eselon IV</option><option>JF Analis Kebijakan Ahli Madya</option>
+</select>
+</div>
+</div>
+</div>
+
+<!-- PENILAIAN -->
+<div class="section">
+<h3>Data Penilaian</h3>
+<div class="grid">
+<div><label>RATING HASIL KERJA</label>
+<select id="rating_hasil">
+<option value="bawah" selected>Di Bawah Ekspektasi</option>
+<option value="sesuai">Sesuai Ekspektasi</option>
+<option value="atas">Di Atas Ekspektasi</option>
+</select>
+</div>
+<div><label>RATING PERILAKU KERJA</label>
+<select id="rating_perilaku">
+<option value="bawah">Di Bawah Ekspektasi</option>
+<option value="sesuai" selected>Sesuai Ekspektasi</option>
+<option value="atas">Di Atas Ekspektasi</option>
+</select>
+</div>
+<div><label>HASIL PENILAIAN KINERJA (teks)</label>
+<select id="hasil_kinerja_teks">
+<option value="Sangat Baik">Sangat Baik</option>
+<option value="Baik" selected>Baik</option>
+<option value="Butuh Perbaikan">Butuh Perbaikan</option>
+<option value="Kurang">Kurang</option>
+<option value="Sangat Kurang">Sangat Kurang</option>
+</select>
+</div>
+<div><label>PENGHARGAAN</label>
+<select id="penghargaan">
+<option value="0" selected>Tidak Ada</option>
+<option value="1">Peraih penghargaan Level Unit Kerja</option>
+<option value="2">Peraih penghargaan Level Instansi</option>
+<option value="3">Peraih penghargaan Level Nasional</option>
+<option value="4">Peraih penghargaan Inovasi Award Level Internasional</option>
+</select>
+</div>
+<div><label>PENUGASAN DALAM TIM KERJA</label>
+<select id="tim_kerja">
+<option value="0">Tidak masuk Tim Kerja</option>
+<option value="1" selected>Anggota Tim Kerja Pada Unit Kerja</option>
+<option value="2">Ketua tim kerja pada unit kerja</option>
+<option value="3">Ketua tim kerja lintas unit kerja</option>
+<option value="4">Ketua Tim Kerja Lintas Instansi</option>
+<option value="5">Ketua tim kerja Pengentasan Kemiskinan lingkup lintas instansi</option>
+</select>
+</div>
+<div><label>UMPAN BALIK 360 DERAJAT</label>
+<select id="umpan_balik">
+<option value="1">Kurang</option>
+<option value="2" selected>Baik</option>
+<option value="3">Sangat Baik</option>
+</select>
+</div>
+<div><label>PENILAIAN KOMPETENSI (0-100)</label>
+<input type="number" id="kompetensi" min="0" max="100" value="82">
+</div>
+<div><label>PENGEMBANGAN KOMPETENSI</label>
+<select id="bangkom">
+<option value="3">3 Sertifikat Kepesertaan</option>
+<option value="5" selected>5 Sertifikat Kepesertaan</option>
+<option value="6">6 Sertifikat Kepesertaan</option>
+<option value="7">7 Sertifikat Kepesertaan</option>
+<option value="9">9 Sertifikat Kepesertaan</option>
+<option value="10">10 Sertifikat Kepesertaan</option>
+<option value="11">11 Sertifikat Kepesertaan</option>
+<option value="14">11 Sertifikat + 3 Sertifikasi Keahlian/Diklat Penjenjangan</option>
+<option value="15">15 Sertifikat Kepesertaan</option>
+</select>
+</div>
+<div><label>PENGALAMAN JABATAN</label>
+<select id="pengalaman">
+<option value="1">Memiliki pengalaman jabatan hanya dalam 1 unit Kerja</option>
+<option value="2" selected>Memiliki pengalaman jabatan lintas Unit Kerja</option>
+<option value="3">Memiliki pengalaman jabatan lintas instansi</option>
+<option value="4">Memiliki pengalaman penugasan sebagai pelaksana tugas pada jenjang jabatan JPT Pratama</option>
+</select>
+</div>
+<div><label>PENILAIAN POTENSI (0-100)</label>
+<input type="number" id="potensi" min="0" max="100" value="90">
+</div>
+<div><label>REKAM JEJAK DISIPLIN</label>
+<select id="disiplin">
+<option value="3" selected>Tidak pernah mendapatkan hukuman disiplin</option>
+<option value="2">Pernah dijatuhi hukuman disiplin ringan</option>
+<option value="1">Pernah dijatuhi hukuman disiplin sedang</option>
+<option value="0.5">Pernah dijatuhi hukuman disiplin berat</option>
+<option value="0">Sedang menjalani hukuman disiplin</option>
+</select>
+</div>
+</div>
+</div>
+
+<!-- OUTPUT -->
+<div class="section">
+<h3>Hasil Otomatis</h3>
+
+<!-- Tombol diletakkan di sini, sebelum output -->
+<div class="tombol-wrapper">
+<button class="btn-primary" onclick="proses()">Proses Pemetaan</button>
+<button class="btn-secondary" onclick="resetForm()">Reset</button>
+</div>
+
+<!-- Area hasil -->
+<div class="result">
+HASIL PENILAIAN KINERJA : <span id="o_hasil">-</span><br>
+NILAI BOBOT (60%) : <span id="o_bobot60">-</span><br>
+NILAI BOBOT (40%) : <span id="o_bobot40">-</span><br>
+NILAI KINERJA (SUMBU Y) : <span id="o_sumbuY">-</span><br>
+U+W+Y+G : <span id="o_uwyg">-</span><br>
+POTENSI + BIDANG ILMU : <span id="o_potensiBidang">-</span><br>
+BANGKOM : <span id="o_bangkom">-</span><br>
+SUMBU X (Potensial) : <span id="o_sumbuX">-</span><br>
+KOTAK TALENTA : <span id="o_kotak">-</span><br>
+KESIMPULAN : <span id="o_kesimpulan">-</span><br>
+MAKNA : <span id="o_makna">-</span>
+</div>
+</div>
+
+</div>
+
+<script>
+// ========== FUNGSI KONVERSI SKOR ==========
+
+function getSkorHasilKinerjaTeks(val) {
+    const map = { 'Sangat Baik': 100, 'Baik': 80, 'Butuh Perbaikan': 60, 'Kurang': 40, 'Sangat Kurang': 20 };
+    return map[val] || 50;
+}
+
+function getPenghargaanScore(val) {
+    const map = { '0': 0, '1': 25, '2': 50, '3': 75, '4': 100 };
+    return map[val] || 0;
+}
+
+function getTimScore(val) {
+    const map = { '0': 0, '1': 25, '2': 75, '3': 75, '4': 100, '5': 100 };
+    return map[val] || 0;
+}
+
+function getUmpanBalikScore(val) {
+    const map = { '1': 40, '2': 80, '3': 100 };
+    return map[val] || 50;
+}
+
+function getKompetensiScore(val) {
+    return Math.min(100, Math.max(0, Number(val) || 0));
+}
+
+function getBangkomScore(val) {
+    const map = {
+        '3': 50, '5': 50, '6': 40, '7': 31, '9': 50,
+        '10': 50, '11': 40, '14': 100, '15': 100
+    };
+    return map[val] || 50;
+}
+
+function getPengalamanScore(val) {
+    const map = { '1': 60, '2': 80, '3': 100, '4': 100 };
+    return map[val] || 60;
+}
+
+function getDisiplinScore(val) {
+    const map = { '3': 100, '2': 75, '1': 50, '0.5': 25, '0': 0 };
+    return map[val] || 50;
+}
+
+function getBidangIlmuScore(val) {
+    return (val === 'Sesuai') ? 100 : 0;
+}
+
+function getPendidikanScore(val) {
+    const map = { 'SLTA': 60, 'D3': 70, 'S1': 80, 'S2': 90, 'S3': 100 };
+    return map[val] || 60;
+}
+
+// ========== PROSES UTAMA ==========
+function proses() {
+    // Ambil nilai input
+    const hasilKinerjaTeks = document.getElementById('hasil_kinerja_teks').value;
+    const penghargaan = document.getElementById('penghargaan').value;
+    const timKerja = document.getElementById('tim_kerja').value;
+    const umpanBalik = document.getElementById('umpan_balik').value;
+    const kompetensiRaw = document.getElementById('kompetensi').value;
+    const bangkomRaw = document.getElementById('bangkom').value;
+    const pengalaman = document.getElementById('pengalaman').value;
+    const potensiRaw = document.getElementById('potensi').value;
+    const disiplin = document.getElementById('disiplin').value;
+    const bidangIlmu = document.getElementById('bidang_ilmu').value;
+    const pendAkhir = document.getElementById('pend_akhir').value;
+
+    // Konversi skor
+    const skorHasilTeks = getSkorHasilKinerjaTeks(hasilKinerjaTeks);
+    const skorPenghargaan = getPenghargaanScore(penghargaan);
+    const skorTim = getTimScore(timKerja);
+    const skorUmpan = getUmpanBalikScore(umpanBalik);
+    const skorKompetensi = getKompetensiScore(kompetensiRaw);
+    const skorBangkom = getBangkomScore(bangkomRaw);
+    const skorPengalaman = getPengalamanScore(pengalaman);
+    const skorDisiplin = getDisiplinScore(disiplin);
+    const skorPotensi = getKompetensiScore(potensiRaw);
+    const skorBidang = getBidangIlmuScore(bidangIlmu);
+    const skorPendidikan = getPendidikanScore(pendAkhir);
+
+    // ---- 1. NILAI BOBOT (60%) ----
+    const bobot60 = 0.6 * skorHasilTeks;
+
+    // ---- 2. NILAI BOBOT (40%) ----
+    const bobot40 = 0.15 * skorPenghargaan + 0.15 * skorTim + 0.10 * skorUmpan;
+
+    // ---- 3. NILAI KINERJA (SUMBU Y) ----
+    const sumbuY = bobot60 + bobot40;
+
+    // ---- 4. U+W+Y+G ----
+    const uwyg = 0.2 * skorKompetensi + 0.1 * skorPengalaman + 0.15 * skorDisiplin + 0.1 * skorPendidikan;
+
+    // ---- 5. BANGKOM ----
+    const bangkom = skorBangkom;
+
+    // ---- 6. POTENSI + BIDANG ILMU ----
+    const potensiBidang = 0.25 * skorPotensi + 0.10 * skorBidang;
+
+    // ---- 7. SUMBU X (Potensial) ----
+    const sumbuX = skorPotensi + uwyg + potensiBidang + 0.10 * bangkom;
+
+    // ---- 8. KOTAK TALENTA & KESIMPULAN ----
+    const thresholdY = 60;
+    const thresholdX = 150;
+    let kotak, kesimpulan, makna;
+
+    if (sumbuY >= thresholdY && sumbuX >= thresholdX) {
+        kotak = 'Bintang';
+        kesimpulan = 'Talenta Unggul';
+        makna = 'Kinerja tinggi dan potensi tinggi. Cocok untuk posisi kepemimpinan dan pengembangan karir cepat.';
+    } else if (sumbuY >= thresholdY && sumbuX < thresholdX) {
+        kotak = 'Profesional';
+        kesimpulan = 'Pelaksana Andal';
+        makna = 'Kinerja tinggi namun potensi terbatas. Cocok untuk peran spesialis atau operasional.';
+    } else if (sumbuY < thresholdY && sumbuX >= thresholdX) {
+        kotak = 'Calon Bintang';
+        kesimpulan = 'Potensi Tersembunyi';
+        makna = 'Kinerja rata-rata, potensi tinggi; calon pemimpin masa depan yang hasil kerjanya perlu dipoles.';
+    } else {
+        kotak = 'Underperformer';
+        kesimpulan = 'Perlu Pembinaan';
+        makna = 'Kinerja dan potensi rendah. Perlu pelatihan, mentoring, atau penempatan ulang.';
+    }
+
+    // ---- TAMPILKAN OUTPUT ----
+    document.getElementById('o_hasil').textContent = hasilKinerjaTeks;
+    document.getElementById('o_bobot60').textContent = bobot60.toFixed(2);
+    document.getElementById('o_bobot40').textContent = bobot40.toFixed(2);
+    document.getElementById('o_sumbuY').textContent = sumbuY.toFixed(2);
+    document.getElementById('o_uwyg').textContent = uwyg.toFixed(2);
+    document.getElementById('o_potensiBidang').textContent = potensiBidang.toFixed(2);
+    document.getElementById('o_bangkom').textContent = bangkom;
+    document.getElementById('o_sumbuX').textContent = sumbuX.toFixed(2);
+    document.getElementById('o_kotak').textContent = kotak;
+    document.getElementById('o_kesimpulan').textContent = kesimpulan;
+    document.getElementById('o_makna').textContent = makna;
+}
+
+function resetForm() {
+    location.reload();
+}
+</script>
+</body>
+</html>
